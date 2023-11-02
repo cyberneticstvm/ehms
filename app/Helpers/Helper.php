@@ -10,6 +10,8 @@ use App\Models\IncomeExpense;
 use App\Models\Order;
 use App\Models\Patient;
 use App\Models\PatientProcedure;
+use App\Models\PatientProcedureDetail;
+use App\Models\Payment;
 use App\Models\Procedure;
 use App\Models\Setting;
 use App\Models\Transfer;
@@ -191,6 +193,111 @@ function owedTotal($consultation_id)
     return json_encode([
         'registration_fee' => $registration_fee, 'consultation_fee' => $consultation_fee, 'procedure_fee' => $procedure_fee, 'pharmacy' => $pharmacy, 'store' => $store
     ]);
+}
+
+function getDayBook($fdate, $tdate, $branch)
+{
+    $from_date = Carbon::parse($fdate)->startOfDay();
+    $to_date = Carbon::parse($tdate)->endOfDay();
+    $reg_fee_total = getRegFeeTotal($from_date, $to_date, $branch);
+    $consultation_fee_total = getConsultationFeeTotal($from_date, $to_date, $branch);
+    $procedure_fee_total = getProcedureFeeTotal($from_date, $to_date, $branch);
+    $order_total = getOrderTotal($fdate, $tdate, $branch);
+    $pharmacy_total = getPharmacyTotal($fdate, $tdate, $branch);
+    $paid_total = getPaidTotal($from_date, $to_date, $branch);
+    $expense_total = getExpenseTotal($fdate, $tdate, $branch);
+    $paid_total_cash = getPaidTotalByMode($from_date, $to_date, $branch, $mode = [1]);
+    $paid_total_other = getPaidTotalByMode($from_date, $to_date, $branch, $mode = [2, 3, 4, 5]);
+    return json_encode([
+        'reg_fee_total' => $reg_fee_total,
+        'consultation_fee_total' => $consultation_fee_total,
+        'procedure_fee_total' => $procedure_fee_total,
+        'order_total' => $order_total,
+        'pharmacy_total' => $pharmacy_total,
+        'paid_total' => $paid_total,
+        'expense_total' => $expense_total,
+        'paid_total_cash' => $paid_total_cash,
+        'paid_total_other' => $paid_total_other,
+    ]);
+}
+function getPaidTotalByMode($from_date, $to_date, $branch, $mode)
+{
+    return Payment::whereBetween('created_at', [$from_date, $to_date])->whereIn('payment_mode', $mode)->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('amount');
+}
+
+function getRegFeeTotal($from_date, $to_date, $branch)
+{
+    return Patient::whereBetween('created_at', [$from_date, $to_date])->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('registration_fee');
+}
+function getRegFeeDetailed($from_date, $to_date, $branch)
+{
+    return Patient::whereBetween('created_at', [$from_date, $to_date])->where('registration_fee', '>', 0)->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->get();
+}
+function getConsultationFeeTotal($from_date, $to_date, $branch)
+{
+    return Consultation::whereBetween('created_at', [$from_date, $to_date])->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('doctor_fee');
+}
+function getConsultationFeeDetailed($from_date, $to_date, $branch)
+{
+    return Consultation::whereBetween('created_at', [$from_date, $to_date])->where('doctor_fee', '>', 0)->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->get();
+}
+function getProcedureFeeTotal($from_date, $to_date, $branch)
+{
+    return PatientProcedureDetail::join('patient_procedures AS p', 'p.id', 'patient_procedure_details.patient_procedure_id')->whereNull('p.deleted_at')->whereBetween('created_at', [$from_date, $to_date])->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('p.branch_id', $branch);
+    })->sum('fee');
+}
+function getProcedureFeeDetailed($from_date, $to_date, $branch)
+{
+    return PatientProcedure::whereBetween('created_at', [$from_date, $to_date])->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->get();
+}
+function getOrderTotal($from_date, $to_date, $branch)
+{
+    return Order::whereBetween('order_date', [$from_date, $to_date])->where('category', 'store')->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('invoice_total');
+}
+function getOrderDetailed($from_date, $to_date, $branch)
+{
+    return Order::whereBetween('order_date', [$from_date, $to_date])->where('invoice_total', '>', 0)->where('category', 'store')->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->get();
+}
+function getPharmacyTotal($from_date, $to_date, $branch)
+{
+    return Order::whereBetween('order_date', [$from_date, $to_date])->where('invoice_total', '>', 0)->where('category', 'pharmacy')->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('invoice_total');
+}
+function getPharmacyDetailed($from_date, $to_date, $branch)
+{
+    return Order::whereBetween('order_date', [$from_date, $to_date])->where('invoice_total', '>', 0)->where('category', 'pharmacy')->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->get();
+}
+function getPaidTotal($from_date, $to_date, $branch)
+{
+    return Payment::whereBetween('created_at', [$from_date, $to_date])->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('amount');
+}
+function getExpenseTotal($from_date, $to_date, $branch)
+{
+    return IncomeExpense::whereBetween('date', [$from_date, $to_date])->where('category', 'expense')->when($branch > 0, function ($q) use ($branch) {
+        return $q->where('branch_id', $branch);
+    })->sum('amount');
 }
 
 function getInventory($branch, $product, $category)
