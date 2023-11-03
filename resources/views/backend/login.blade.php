@@ -42,7 +42,7 @@
       <div class="col-12 p-0">
         <div class="login-card login-dark">
           <div>
-            <div><a class="logo" href="/login"><img class="img-fluid" src="{{ asset('/backend/assets/images/logo/logo.webp') }}" alt=""></a></div>
+            <div><a class="logo" href="/"><img class="img-fluid" src="{{ asset('/backend/assets/images/logo/logo.webp') }}" alt=""></a></div>
             <div class="login-main">
               <form class="theme-form" method="post" action="{{ route('login') }}">
                 @csrf
