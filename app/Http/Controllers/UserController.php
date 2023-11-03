@@ -117,7 +117,7 @@ class UserController extends Controller
             'branches' => 'required',
         ]);
 
-        $input = $request->all();
+        $input = $request->except(array('roles', 'branches'));
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -167,7 +167,7 @@ class UserController extends Controller
             'branches' => 'required',
         ]);
 
-        $input = $request->all();
+        $input = $request->except(array('roles', 'branches'));
         if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
