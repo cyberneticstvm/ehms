@@ -64,7 +64,7 @@ require __DIR__.'/auth.php';*/
 
 Route::middleware(['web'])->group(function () {
     Route::get('/landing', function () {
-        return view('landing');
+        return view('index');
     })->name('landing');
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'login')->name('login');
