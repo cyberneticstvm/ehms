@@ -25,7 +25,7 @@ class SubdomainConnection
         if ($tenant && $subdomain != env('APP_MAIN_DOMAIN')) :
             Config::set('database.connections.mysql.database', $tenant->database);
         else :
-            Config::set('database.connections.mysql.database', 'db_ehms_landlord');
+            Config::set('database.connections.mysql.database', Config::get('tenant.landlord_db_name'));
         endif;
         DB::purge('mysql');
 
