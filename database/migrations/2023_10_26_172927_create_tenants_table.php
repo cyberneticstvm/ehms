@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('subdomain')->unique();
             $table->string('domain')->unique();
             $table->string('database')->unique();
             $table->string('db_user')->unique();
             $table->string('db_password');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->enum('status', ['active', 'inactive', 'expired', 'cancelled']);
+            $table->date('expired_on')->nullable();
             $table->timestamps();
         });
     }

@@ -20,13 +20,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'mobile',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,11 +42,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function branches(){
+    public function branches()
+    {
         return $this->hasMany(UserBranch::class, 'user_id', 'id');
     }
 
-    public function status(){
+    public function status()
+    {
         return ($this->deleted_at) ? "<span class='badge badge-danger'>Deleted</span>" : "<span class='badge badge-success'>Active</span>";
     }
 }

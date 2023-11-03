@@ -74,6 +74,8 @@ Route::middleware(['web'])->group(function () {
     });
 
     Route::controller(FrontEndController::class)->group(function () {
+        Route::get('/tenant/register', 'register')->name('tenant.register');
+        Route::post('/tenant/register', 'registerTenant')->name('tenant.register.save');
         Route::post('/request/demo', 'requestDemo')->name('request.demo');
     });
 });

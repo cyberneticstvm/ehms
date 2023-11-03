@@ -6,6 +6,7 @@ use App\Models\Branch;
 use App\Models\Tenant;
 use App\Models\User;
 use App\Models\UserBranch;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -31,7 +32,7 @@ class UserController extends Controller
     {
         $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
-            $tenant = Tenant::where('subdomain', $subdomain)->first();
+            $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
             if ($tenant) :
                 return view('backend.login');
             else :
