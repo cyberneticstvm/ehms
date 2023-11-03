@@ -29,7 +29,8 @@ class UserController extends Controller
 
     public function login()
     {
-        $subdomain = Route::current()->parameter('sub');
+        $urlParts = explode('.', $_SERVER['HTTP_HOST']);
+        $subdomain = $urlParts[0];
         echo $subdomain;
         die;
         if ($subdomain) :
