@@ -31,9 +31,7 @@ class UserController extends Controller
     {
         $urlParts = explode('.', $_SERVER['HTTP_HOST']);
         $subdomain = $urlParts[0];
-        echo $subdomain;
-        die;
-        if ($subdomain) :
+        if ($subdomain != env('APP_MAIN_DOMAIN')) :
             return view('backend.login');
         else :
             return view('index');
