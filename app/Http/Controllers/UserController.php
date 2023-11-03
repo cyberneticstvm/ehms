@@ -33,6 +33,8 @@ class UserController extends Controller
     {
         $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
+            Config::set('database.connections.mysql.database', Config::get('tenant.landlord_db_name'));
+            DB::purge('mysql');
             $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
             if ($tenant) :
                 return view('backend.login');
