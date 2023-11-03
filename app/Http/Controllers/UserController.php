@@ -38,8 +38,6 @@ class UserController extends Controller
                 DB::purge('mysql');
                 Config::set('database.connections.mysql.database', $tenant->database);
                 DB::reconnect('mysql');
-                echo DB::connection()->getDatabaseName();
-                die;
                 return view('backend.login');
             else :
                 DB::purge('mysql');
@@ -54,6 +52,8 @@ class UserController extends Controller
 
     public function signin(Request $request)
     {
+        echo DB::connection()->getDatabaseName();
+        die;
         $cred = $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
