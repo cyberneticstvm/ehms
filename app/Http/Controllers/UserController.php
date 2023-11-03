@@ -30,6 +30,8 @@ class UserController extends Controller
     public function login()
     {
         $subdomain = Route::current()->parameter('sub');
+        echo $subdomain;
+        die;
         if ($subdomain) :
             return view('backend.login');
         else :
