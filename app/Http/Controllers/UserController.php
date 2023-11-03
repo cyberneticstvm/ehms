@@ -37,7 +37,7 @@ class UserController extends Controller
             if ($tenant) :
                 DB::purge('mysql');
                 Config::set('database.connections.mysql.database', $tenant->database);
-                DB::connection('mysql');
+                DB::reconnect('mysql');
                 echo DB::connection('mysql')->getDatabaseName();
                 die;
                 return view('backend.login');
