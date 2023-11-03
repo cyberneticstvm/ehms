@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\Tenant;
 use App\Models\User;
 use App\Models\UserBranch;
 use Illuminate\Http\Request;
@@ -28,10 +29,14 @@ class UserController extends Controller
 
     public function login()
     {
-        $urlParts = explode('.', $_SERVER['HTTP_HOST']);
-        $subdomain = $urlParts[0];
+        $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
-            return view('backend.login');
+            $tenant = Tenant::where('subdomain', $subdomain)->first();
+            if ($tenant) :
+                return view('backend.login');
+            else :
+                return view('index');
+            endif;
         else :
             return view('index');
         endif;
