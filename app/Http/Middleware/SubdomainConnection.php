@@ -23,12 +23,11 @@ class SubdomainConnection
 
         $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->firstOrFail();
         if ($tenant && $subdomain != env('APP_MAIN_DOMAIN')) :
-            Config::set('database.connections.mysql.database', $tenant->database);
-            DB::purge('mysql');
+        //Config::set('database.connections.mysql.database', $tenant->database);
         else :
-            Config::set('database.connections.mysql.database', env('DB_DATABASE'));
-            DB::purge('mysql');
+        //Config::set('database.connections.mysql.database', env('DB_DATABASE'));
         endif;
+        //DB::purge('mysql');
 
         return $next($request);
     }
