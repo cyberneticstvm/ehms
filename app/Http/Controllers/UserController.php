@@ -11,7 +11,6 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
 use Hash;
 use DB;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -31,8 +30,6 @@ class UserController extends Controller
     {
         $urlParts = explode('.', $_SERVER['HTTP_HOST']);
         $subdomain = $urlParts[0];
-        echo $subdomain . ' - ' . env('APP_MAIN_DOMAIN');
-        die;
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
             return view('backend.login');
         else :
