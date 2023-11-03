@@ -50,8 +50,6 @@ class UserController extends Controller
 
     public function signin(Request $request)
     {
-        echo DB::connection()->getDatabaseName();
-        die;
         $cred = $this->validate($request, [
             'username' => 'required',
             'password' => 'required',
