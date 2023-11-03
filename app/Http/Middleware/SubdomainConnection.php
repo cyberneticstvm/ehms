@@ -22,7 +22,7 @@ class SubdomainConnection
         $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
 
         $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->firstOrFail();
-        if ($tenant) :
+        if ($tenant && $subdomain != env('APP_MAIN_DOMAIN')) :
             Config::set('database.connections.mysql.database', $tenant->database);
             DB::purge('mysql');
         endif;
