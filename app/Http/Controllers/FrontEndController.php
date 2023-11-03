@@ -16,7 +16,12 @@ class FrontEndController extends Controller
                 'mobile' => 'required|numeric|digits:10|unique:demo_requests,mobile',
                 'email' => 'required|email|unique:demo_requests,email',
             ]);
-            DemoRequest::create($request->all());
+            DemoRequest::create([
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'email' => $request->email,
+                'message' => $request->message,
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
