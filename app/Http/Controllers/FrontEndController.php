@@ -9,7 +9,9 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 
 class FrontEndController extends Controller
 {
@@ -64,7 +66,7 @@ class FrontEndController extends Controller
                     'subdomain' => $request->subdomain,
                 ]);
 
-                Tenant::create([
+                $tenant = Tenant::create([
                     'user_id' => $user->id,
                     'subdomain' => $request->subdomain,
                     'domain' => $request->subdomain . '.' . Config::get('tenant.app_main_domain'),
@@ -75,6 +77,16 @@ class FrontEndController extends Controller
                     'expired_on' => Carbon::today()->addDays(365)->toDate(),
                 ]);
             });
+            DB::statement("CREATE DATABASE " . Config::get('tenant.tenant_db_prefix') . $request->subdomain);
+            DB::statement("USE " . Config::get('tenant.tenant_db_prefix') . $request->subdomain);
+
+            Artisan::call("migrate:install");
+            Artisan::call("migrate", ['--path' => '/database/migrations/tenant']);
+            Artisan::call("db:seed", ['--class' => 'DumpData']);
+
+            DB::table('users')->where('id', 1)->update(['name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password), 'username' => $request->username, 'mobile' => $request->mobile]);
+
+            DB::reconnect('mysql');
         } catch (Exception $e) {
             return redirect()->back()->with("error", $e->getMessage())->withInput($request->all());
         }

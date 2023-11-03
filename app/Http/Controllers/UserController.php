@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Arr;
 use Hash;
 use DB;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -34,6 +35,8 @@ class UserController extends Controller
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
             $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
             if ($tenant) :
+                Config::set('tenant.mysql.database', $tenant->database);
+                DB::reconnect('mysql');
                 return view('backend.login');
             else :
                 return redirect()->route('landing')->with("error", "Unauthorized Access!");

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('allow_sales_at_zero_qty')->comment('1-yes, 0-no')->default(0);
             $table->enum('tax_type', ['VAT', 'GST', 'OTHER'])->default('GST');
             $table->string('currency')->default('₹')->nullable();
+            $table->decimal('daily_expense_limit', 9, 2)->default(0)->nullable();
         });
     }
 
