@@ -34,14 +34,13 @@ class UserController extends Controller
         $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
             $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
+            DB::purge('mysql');
             if ($tenant) :
-                DB::purge('mysql');
                 Config::set('database.connections.mysql.database', $tenant->database);
                 DB::reconnect('mysql');
-                echo DB::connection()->getDatabaseName();
-                die;
                 return view('backend.login');
             else :
+                Config::set('database.connections.mysql.database', env('DB_DATABASE'));
                 DB::reconnect('mysql');
                 return redirect()->route('landing')->with("error", "Unauthorized Access!");
             endif;
