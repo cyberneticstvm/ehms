@@ -36,7 +36,7 @@ class UserController extends Controller
             $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
             if ($tenant) :
                 Config::set('database.connections.mysql_tenant.database', $tenant->database);
-                DB::connection('mysql_tenant');
+                DB::connection('mysql_tenant')->select('');
                 echo DB::connection()->getDatabaseName();
                 die;
                 return view('backend.login');
