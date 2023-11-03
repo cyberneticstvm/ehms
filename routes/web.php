@@ -63,9 +63,9 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';*/
 
 Route::middleware(['web'])->group(function () {
-    /*Route::get('/', function () {
-        return view('backend.login');
-    });*/
+    Route::get('/landing', function () {
+        return view('landing');
+    })->name('landing');
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'login')->name('login');
         Route::post('/', 'signin')->name('user.login');

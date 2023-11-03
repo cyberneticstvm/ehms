@@ -35,7 +35,7 @@ class UserController extends Controller
             if ($tenant) :
                 return view('backend.login');
             else :
-                return redirect()->back();
+                return redirect()->route('landing')->with("error", "Unauthorized Access!");
             endif;
         else :
             return view('index');
