@@ -9,8 +9,8 @@
   <meta name="keywords" content="eHMS.care.">
   <meta name="author" content="Cybernetics">
   <meta name="csrf-token" content="{{ csrf_token() }}" />
-  <link rel="icon" href="{{ asset('/backend/assets/images/logo/devi-logo.png') }}" type="image/x-icon">
-  <link rel="shortcut icon" href="{{ asset('/backend/assets/images/logo/devi-logo.png') }}" type="image/x-icon">
+  <link rel="icon" href="{{ asset('/backend/assets/images/logo/favicon.png') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('/backend/assets/images/logo/favicon.png') }}" type="image/x-icon">
   <title>Eye Hospital Management System - Login</title>
   <!-- Google font-->
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
