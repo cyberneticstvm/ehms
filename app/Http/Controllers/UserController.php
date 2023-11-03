@@ -117,9 +117,14 @@ class UserController extends Controller
             'branches' => 'required',
         ]);
 
-        $input = $request->except(array('roles', 'branches'));
-        $input['password'] = Hash::make($input['password']);
-        $user = User::create($input);
+        $input = $request->all();
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => Hash::make($request->password),
+        ]);
         $user->assignRole($request->input('roles'));
         $data = [];
         foreach ($request->branches as $key => $br) :
@@ -167,15 +172,17 @@ class UserController extends Controller
             'branches' => 'required',
         ]);
 
-        $input = $request->except(array('roles', 'branches'));
-        if (!empty($input['password'])) {
-            $input['password'] = Hash::make($input['password']);
-        } else {
-            $input = Arr::except($input, array('password'));
-        }
+        $input = $request->all();
+
 
         $user = User::findOrFail($id);
-        $user->update($input);
+        $user->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'password' => ($request->password) ? Hash::make($request->password) : $user->getOriginal('password'),
+        ]);
         $data = [];
         foreach ($request->branches as $key => $br) :
             $data[] = [
