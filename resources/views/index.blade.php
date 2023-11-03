@@ -12,6 +12,7 @@
     <link rel="icon" href="{{ asset('/frontend/assets/images/favicon.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('/frontend/assets/images/favicon.png') }}" type="image/x-icon">
     <title>eHMS - A Super Cool Eye Hospital Management System</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -88,7 +89,7 @@
             <div class="custom-container container">
                 <div class="home-content" id="home">
                     <h4 class="txt-warning">Introducing </h4>
-                    <h1>The leading <span class="txt-success">Eye Hospital Management System</span> for your business</h1>
+                    <h1>The leading <span class="txt-success">Eye Hospital Management System</span> for your Hospital</h1>
                     <p>eHMS helps to manage all aspects of your eye hospital's operations such as Branches, Patients, Doctors, Appointments, consultation, Camps, Pharmacy and Orders. It includes electronic health records, business intelligence, SMS and revenue cycle management.</p>
                     <div class="row">
                         <div class="col-lg-5 col-md-8">
@@ -1123,19 +1124,24 @@
             </div>
             <div class="drawer-body">
                 <h6 class="text-success text-center">Please enter your details and submit the form.</h6>
-                <form>
+                <form method="post" id="frm-req-demo">
+                    @csrf
                     <div class="row mt-3 mb-3 g-3">
                         <div class="col-12">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" placeholder="Full Name" required="required">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Full Name" required="required">
                         </div>
                         <div class="col-12">
-                            <label class="form-label">Contact Number</label>
-                            <input type="text" class="form-control" placeholder="Contact Number" maxlength="10" required="required">
+                            <label class="form-label">Contact Number *</label>
+                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Contact Number" maxlength="10" required="required">
                         </div>
                         <div class="col-12">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="Email" required="required">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="required">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Message (Optional)</label>
+                            <textarea class="form-control" placeholder="Message" name="message" id="message" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -1145,10 +1151,13 @@
                             </button>
                         </div>
                         <div class="col-6">
-                            <button type="submit" class="btn btn-success w-100">
+                            <button type="submit" class="btn btn-success btn-submit w-100">
                                 Submit
                             </button>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 message mt-3"></div>
                     </div>
                 </form>
             </div>
@@ -1169,7 +1178,44 @@
     <script src="{{ asset('/backend/assets/js/drawer/bootstrap-drawer.js') }}"></script>
 
     <script src="{{ asset('/frontend/assets/js/script.js') }}"></script>
-
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).on("submit", "#frm-req-demo", function(e) {
+                e.preventDefault();
+                var formData = {
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    mobile: $("#mobile").val(),
+                    message: $("#message").val(),
+                };
+                $.ajax({
+                    method: 'post',
+                    url: '/request/demo',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.status == 'success') {
+                            $('#frm-req-demo')[0].reset();
+                            $(".message").html(res.message).removeClass('text-danger').addClass('text-success')
+                        } else {
+                            $(".message").html(res.message).removeClass('text-success').addClass('text-danger');
+                        }
+                    },
+                    beforeSend: function() {
+                        $(".btn-submit").html("Requesting..")
+                    },
+                    complete: function() {
+                        $(".btn-submit").html("Submit")
+                    }
+                });
+            })
+        });
+    </script>
 </body>
 
 </html>

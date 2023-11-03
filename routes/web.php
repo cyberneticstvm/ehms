@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CampController;
@@ -62,14 +63,17 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';*/
 
 Route::middleware(['web'])->group(function () {
-    Route::get('/', function () {
-        return view('index');
+    /*Route::get('/', function () {
+        return view('backend.login');
+    });*/
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/', 'login')->name('login');
+        Route::post('/', 'signin')->name('user.login');
+        Route::get('/logout', 'logout')->name('logout')->middleware('auth');
     });
 
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/login', 'login')->name('login');
-        Route::post('/login', 'signin')->name('user.login');
-        Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+    Route::controller(FrontEndController::class)->group(function () {
+        Route::post('/request/demo', 'requestDemo')->name('request.demo');
     });
 });
 
