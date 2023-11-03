@@ -33,7 +33,7 @@ class UserController extends Controller
     {
         $subdomain = explode('.', $_SERVER['HTTP_HOST'])[0];
         if ($subdomain != env('APP_MAIN_DOMAIN')) :
-            $tenant = 'demo'; //Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
+            $tenant = Tenant::where('subdomain', $subdomain)->where('status', 'active')->whereDate('expired_on', '>=', Carbon::today())->first();
             if ($tenant) :
                 return view('backend.login');
             else :
