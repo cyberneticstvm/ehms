@@ -35,7 +35,7 @@ class UserController extends Controller
             if ($tenant) :
                 return view('backend.login');
             else :
-                return view('index');
+                return redirect()->back();
             endif;
         else :
             return view('index');
