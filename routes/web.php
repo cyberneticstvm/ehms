@@ -66,6 +66,7 @@ Route::middleware(['web'])->group(function () {
     Route::get('/landing', function () {
         return view('index');
     })->name('landing');
+
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'login')->name('login');
         Route::post('/', 'signin')->name('user.login');
