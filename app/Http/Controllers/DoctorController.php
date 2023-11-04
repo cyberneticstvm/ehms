@@ -45,8 +45,6 @@ class DoctorController extends Controller
             'fee' => 'required',
         ]);
         $input = $request->all();
-        dd($request);
-        die;
         $input['created_by'] = $request->user()->id;
         $input['updated_by'] = $request->user()->id;
         Doctor::create($input);
