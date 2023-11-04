@@ -52,7 +52,7 @@ class FrontEndController extends Controller
             'name' => 'required',
             'mobile' => 'required|numeric|digits:10|unique:users,mobile',
             'email' => 'required|email|unique:users,email',
-            'subdomain' => 'required|unique:users,subdomain',
+            'subdomain' => 'required|regex:/^[A-Za-z0-9]+$/|unique:users,subdomain',
             'username' => 'required',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required'
