@@ -125,5 +125,31 @@ class DumpData extends Seeder
                 'name' => $pmode,
             ]);
         endforeach;
+
+        $cat1 = [
+            'category' => 'lens',
+            'attribute' => 'type',
+            'name' => 'Single Vision',
+        ];
+        $cat2 = [
+            'category' => 'frame',
+            'attribute' => 'type',
+            'name' => 'Full Rim',
+        ];
+        $cat3 = [
+            'category' => 'pharmacy',
+            'attribute' => 'category',
+            'name' => 'Tablet',
+        ];
+        $cat4 = [
+            'category' => 'service',
+            'attribute' => 'category',
+            'name' => 'Other',
+        ];
+
+        ProductSubcategory::insert($cat1);
+        ProductSubcategory::insert($cat2);
+        ProductSubcategory::insert($cat3);
+        ProductSubcategory::insert($cat4);
     }
 }

@@ -111,7 +111,7 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users,username',
             'email' => 'required|email|unique:users,email',
-            'mobile' => 'required|numeric|digits:10',
+            'mobile' => 'required|numeric|digits:10|unique:users,mobile',
             'password' => 'required|confirmed',
             'roles' => 'required',
             'branches' => 'required',
@@ -167,7 +167,7 @@ class UserController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users,username,' . $id,
             'email' => 'required|email|unique:users,email,' . $id,
-            'mobile' => 'required|numeric|digits:10',
+            'mobile' => 'required|numeric|digits:10|unique:users,mobile,' . $id,
             'roles' => 'required',
             'branches' => 'required',
         ]);
