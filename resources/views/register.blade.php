@@ -135,9 +135,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <button type="button" class="btn btn-danger w-100" data-toggle="drawer" data-target="#drawer-1">
+                                                    <a href="/" type="button" class="btn btn-danger w-100">
                                                         Cancel
-                                                    </button>
+                                                    </a>
                                                 </div>
                                                 <div class="col-6">
                                                     <button type="submit" class="btn btn-success btn-submit w-100">
