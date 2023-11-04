@@ -47,6 +47,9 @@
         3.2 Header CSS
         3.3 Footer CSS
 */
+.text-justify{
+    text-align: justify !important;
+}
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

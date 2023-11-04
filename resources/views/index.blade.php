@@ -103,8 +103,8 @@
                                         </div>
                                         <input type="email" class="form-control" placeholder="Enter your email.." required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary rounded-pill">
-                                        <span>Free Trial</span>
+                                    <button type="button" class="btn btn-primary rounded-pill" data-toggle="drawer" data-target="#drawer-1">
+                                        <span>Request Demo</span>
                                         <svg>
                                             <use href="{{ asset('/frontend/assets/svg/icon_sprite.svg#arrow-right') }}"></use>
                                         </svg>
@@ -142,8 +142,8 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="title-style-1 text-center">
-                            <h5>Trusted 10,000+ Companies around the world</h5>
-                            <h2>Business That Grows With Cuba Productivity Tool</h2>
+                            <h5>Trusted 10+ Companies around the world</h5>
+                            <h2>Hospitals That Grows With <span class="text-primary"> eHMS</span> Productivity Tool</h2>
                         </div>
                     </div>
                 </div>
@@ -154,52 +154,17 @@
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
                                         <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/1.webp') }}" alt="logo">
+                                            <a href="https://devieh.com" target="_blank">Devi Eye Hospitals</a>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/2.webp') }}" alt="logo">
+                                            <a href="https://specta360.com" target="_blank">Specta360</a>
                                         </div>
                                     </div>
                                     <div class="swiper-slide">
                                         <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/3.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/4.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/5.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/6.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/3.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/4.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/5.webp') }}" alt="logo">
-                                        </div>
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <div class="brand-box">
-                                            <img src="{{ asset('/frontend/assets/images/sass/brand/6.webp') }}" alt="logo">
+                                            <a href="https://devieyecare.com" target="_blank">Devi Eyecare</a>
                                         </div>
                                     </div>
                                 </div>
@@ -218,7 +183,7 @@
                     <div class="col-sm-12">
                         <div class="title-style-1 text-center">
                             <h5>Introducing our service</h5>
-                            <h2>We Are Here To Help You Build Your Business</h2>
+                            <h2>We Are Here To Help You Run Your Hospital Business</h2>
                             <p>Customer support for SaaS companies is one of the best ways to understand your customers'
                                 feelings about your business.</p>
                         </div>
@@ -957,32 +922,22 @@
                         <div class="col-xl-4">
                             <div class="footer-contact">
                                 <a href="index.html">
-                                    <img src="{{ asset('/frontend/assets/images/logo/logo_dark.webp') }}" alt="logo">
+                                    <img src="{{ asset('/frontend/assets/images/logo/logo.webp') }}" alt="eHMS Logo">
                                 </a>
-                                <p>Outlived no dwelling denoting in peculiar as he believed. Behavior excellent
-                                    middleton be as it curiosity departure ourselves very extreme future.</p>
+                                <p class="text-justify">eHMS helps to manage all aspects of your eye hospital's operations such as Branches, Patients, Doctors, Appointments, consultation, Camps, Pharmacy and Orders. It includes electronic health records, business intelligence, SMS and revenue cycle management.</p>
                                 <ul>
                                     <li>
-                                        <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                                        <a target="_blank" href="https://www.facebook.com/ehms.care"><i class="fa-brands fa-facebook-f"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://in.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/ehms.care"><i class="fa-brands fa-instagram"></i></a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-xl-2 col-md-4 col-6">
                             <div class="footer-content">
-                                <h3>Quick Link</h3>
+                                <h3>Quick Links</h3>
                                 <ul class="footer-links">
                                     <li>
                                         <a href="#">
@@ -1011,7 +966,7 @@
                                     <li>
                                         <a href="#">
                                             <i class="fa-solid fa-chevron-right"></i>
-                                            <span>Login</span>
+                                            <span>Demo</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -1019,36 +974,24 @@
                         </div>
                         <div class="col-xl-2 col-md-4 col-6">
                             <div class="footer-content">
-                                <h3>Community</h3>
+                                <h3>Important Links</h3>
                                 <ul class="footer-links">
                                     <li>
                                         <a href="#">
                                             <i class="fa-solid fa-chevron-right"></i>
-                                            <span>Career</span>
+                                            <span>Mentors</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
                                             <i class="fa-solid fa-chevron-right"></i>
-                                            <span>Leadership</span>
+                                            <span>Our Products</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#">
+                                        <a href="https://cybernetics.me" target="_blank">
                                             <i class="fa-solid fa-chevron-right"></i>
-                                            <span>Strategy</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-chevron-right"></i>
-                                            <span>Services</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-chevron-right"></i>
-                                            <span>History</span>
+                                            <span>Parent Organization</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -1067,7 +1010,7 @@
                                             </div>
                                             <div>
                                                 <h6>Address :</h6>
-                                                <p>2118 Thorndike Cir. Syracuse, Connecticut 35624</p>
+                                                <p>Head Office: Trivandrum</p>
                                             </div>
                                         </div>
                                     </li>
@@ -1080,7 +1023,7 @@
                                             </div>
                                             <div>
                                                 <h6>email :</h6>
-                                                <p>info@cubatheme.com</p>
+                                                <p>contact@ehms.care</p>
                                             </div>
                                         </div>
                                     </li>
@@ -1095,7 +1038,7 @@
                 <div class="sub-footer">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <p>© Copyright 2023. All Rights Reserved by </p>
+                            <p>© Copyright {{ date('Y') }}. All Rights Reserved by <a href="https://cybernetics.me" target="_blank">Cybernetics Technologies.</a></p>
                         </div>
                         <div class="col-md-6">
                             <ul class="footer-links sub-footer-links">

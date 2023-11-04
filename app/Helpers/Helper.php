@@ -20,6 +20,11 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 
+function subdomain()
+{
+    return explode('.', $_SERVER['HTTP_HOST'])[0];
+}
+
 function settings()
 {
     return Setting::findOrFail(1);
@@ -142,6 +147,7 @@ function getAppointmentTimeList($date, $doctor, $branch)
 
 function uploadDocument($item, $path)
 {
+    $path = subdomain() . '/' . $path;
     $doc = Storage::disk('s3')->put($path, $item);
     $url = Storage::disk('s3')->url($doc);
     return $url;
@@ -149,6 +155,7 @@ function uploadDocument($item, $path)
 
 function deleteDocument($path, $url)
 {
+    $path = subdomain() . '/' . $path;
     if (Storage::disk('s3')->exists($path . substr($url, strrpos($url, '/') + 1))) :
         Storage::disk('s3')->delete($path . substr($url, strrpos($url, '/') + 1));
     endif;

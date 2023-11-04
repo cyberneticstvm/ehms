@@ -167,26 +167,17 @@
                     <div class="row gx-xl-5 gy-md-5 gy-4 gx-4">
                         <div class="col-xl-4">
                             <div class="footer-contact">
-                                <a href="index.html">
-                                    <img src="{{ asset('/frontend/assets/images/logo/logo.webp') }}" alt="logo">
+                                <a href="/">
+                                    <img src="{{ asset('/frontend/assets/images/logo/logo.webp') }}" alt="eHMS Logo">
                                 </a>
                                 <p>Outlived no dwelling denoting in peculiar as he believed. Behavior excellent
                                     middleton be as it curiosity departure ourselves very extreme future.</p>
                                 <ul>
                                     <li>
-                                        <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                                        <a href="https://www.facebook.com/ehms.care"><i class="fa-brands fa-facebook-f"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://in.pinterest.com/"><i class="fa-brands fa-pinterest"></i></a>
+                                        <a href="https://www.instagram.com/ehms.care"><i class="fa-brands fa-instagram"></i></a>
                                     </li>
                                 </ul>
                             </div>
