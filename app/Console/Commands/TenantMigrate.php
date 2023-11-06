@@ -34,7 +34,6 @@ class TenantMigrate extends Command
         try {
             foreach ($tenants as $key => $tenant) :
                 Config::set('database.connections.mysql.database', $tenant->database);
-                //DB::purge('mysql');
                 DB::reconnect('mysql');
                 Artisan::call("migrate", ['--path' => '/database/migrations/tenant']);
                 $this->info('Migration successfull for ' . $tenant->database);
