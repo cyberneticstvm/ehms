@@ -42966,6 +42966,6 @@ input.form-control{
 .tblPharmacyPurchaseBody .select2-container .select2-selection--single, .powerbox .select2-container .select2-selection--single, .tblPharmacyTransferBody .select2-container .select2-selection--single, .medicineRow .select2-container .select2-selection--single, .medicineBox .select2-container .select2-selection--single{
   border-color: transparent !important;
 }
-/*.logo-wrapper img, .logo-icon-wrapper img{
+.logo-wrapper img, .logo-icon-wrapper img{
   width: 80% !important;
-}*/
+}
