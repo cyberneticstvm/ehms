@@ -242,11 +242,11 @@
                         <div class="service-content service-box">
                             <img class="img-fluid service-shape" src="{{ asset('/frontend/assets/images/shape/2.webp') }}" alt="shape">
                             <div class="service-icon-box">
-                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/3.webp') }}" alt="icon">
+                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/2.webp') }}" alt="icon">
                             </div>
                             <div class="service-content-wrap">
-                                <h3>App Development</h3>
-                                <p>App development refers to the process of designing, developing, and deploying </p>
+                                <h3>Appointments</h3>
+                                <p class="text-justify">Managing patient appointments efficiently contributes to better patient care and overall healthcare service quality. Modern technologies, such as eHMS, can help streamline the process and improve the patient experience.</p>
                             </div>
                         </div>
                     </div>
@@ -254,11 +254,11 @@
                         <div class="service-content service-box">
                             <img class="img-fluid service-shape" src="{{ asset('/frontend/assets/images/shape/2.webp') }}" alt="shape">
                             <div class="service-icon-box">
-                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/4.webp') }}" alt="icon">
+                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/2.webp') }}" alt="icon">
                             </div>
                             <div class="service-content-wrap">
-                                <h3>Customization</h3>
-                                <p>Customization refers to the process of modifying or tailoring a product & service</p>
+                                <h3>Consultation</h3>
+                                <p class="text-justify">Patient consultations are a cornerstone of effective healthcare delivery, ensuring that patients receive appropriate care and that their health concerns are addressed. Good communication and a patient-centered approach are essential for successful patient consultations.</p>
                             </div>
                         </div>
                     </div>
@@ -266,11 +266,11 @@
                         <div class="service-content service-box">
                             <img class="img-fluid service-shape" src="{{ asset('/frontend/assets/images/shape/2.webp') }}" alt="shape">
                             <div class="service-icon-box">
-                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/5.webp') }}" alt="icon">
+                                <img src="{{ asset('/frontend/assets/images/sass/service/icons/2.webp') }}" alt="icon">
                             </div>
                             <div class="service-content-wrap">
-                                <h3>Integration Directory</h3>
-                                <p>An integration directory is a repository or a directory that contains information
+                                <h3>Reports</h3>
+                                <p>AI integrated one click reports for all modules such as Appointments, Consultation, Camp Register, Pharmacy, Inventory and Store. eHMS also providing interactive dashboard for graphical representations and consolidated numbers for the data.
                                 </p>
                             </div>
                         </div>
@@ -295,7 +295,7 @@
                         <div class="about-content">
                             <div class="title-style-1">
                                 <h5>About Us</h5>
-                                <h2>Why Cuba is theBest software company</h2>
+                                <h2>Why eHMS is the Best Eye Hospital Software</h2>
                             </div>
                             <p>A software company is an organization that develops, distributes, and supports software
                                 products and services.</p>
