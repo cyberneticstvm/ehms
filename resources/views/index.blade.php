@@ -1043,10 +1043,10 @@
                         <div class="col-md-6">
                             <ul class="footer-links sub-footer-links">
                                 <li>
-                                    <a href="#">Terms</a>
+                                    <a href="{{ route('terms.of.use') }}">Terms of Use</a>
                                 </li>
                                 <li>
-                                    <a href="#">Privacy</a>
+                                    <a href="{{ route('privacy.policy') }}">Privacy Policy</a>
                                 </li>
                                 <li>
                                     <a href="#">Support</a>

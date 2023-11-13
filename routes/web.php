@@ -67,6 +67,14 @@ Route::middleware(['web'])->group(function () {
         return view('index');
     })->name('landing');
 
+    Route::get('/terms-of-use', function () {
+        return view('terms');
+    })->name('terms.of.use');
+
+    Route::get('/privacy-policy', function () {
+        return view('privacy');
+    })->name('privacy.policy');
+
     Route::controller(UserController::class)->group(function () {
         Route::get('/', 'login')->name('login');
         Route::post('/', 'signin')->name('user.login');

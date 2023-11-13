@@ -46,6 +46,18 @@ class FrontEndController extends Controller
         return view('register');
     }
 
+    public function privacyPolicy()
+    {
+        return view('privacy');
+    }
+
+    public function termsOfUse()
+    {
+        echo "hai";
+        die;
+        return view('terms');
+    }
+
     public function registerTenant(Request $request)
     {
         $this->validate($request, [
